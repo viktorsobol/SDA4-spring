@@ -1,9 +1,8 @@
 package com.example.demo.fruits;
 
+import com.example.demo.fruits.repositories.FruitsRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 public class FruitsController {
@@ -14,5 +13,16 @@ public class FruitsController {
     @RequestMapping(method = RequestMethod.GET, path = "/fruits/all")
     public Iterable<Fruits> getAll() {
         return fruitsRepository.findAll();
+    }
+
+    @RequestMapping(method = RequestMethod.GET, path = "/fruits/name")
+    public Iterable<Fruits> get(@RequestParam("name") String name) {
+        return fruitsRepository.findAllByName(name);
+    }
+
+    @RequestMapping(method = RequestMethod.POST, path = "/fruits/new")
+    public void newFruit(@RequestBody Fruits fruit) {
+        if (!fruitsRepository.existsById(fruit.getId()))
+            fruitsRepository.save(fruit);
     }
 }
