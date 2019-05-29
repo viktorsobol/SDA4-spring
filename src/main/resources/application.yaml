@@ -4,3 +4,8 @@ spring:
     password: pass
     url: jdbc:mysql://localhost:3306/db_test
     driver-class-name: com.mysql.cj.jdbc.Driver
+
+
+  security:
+    user:
+      password: user

@@ -22,7 +22,6 @@ public class FruitsController {
 
     @RequestMapping(method = RequestMethod.POST, path = "/fruits/new")
     public void newFruit(@RequestBody Fruits fruit) {
-        if (!fruitsRepository.existsById(fruit.getId()))
-            fruitsRepository.save(fruit);
+        fruitsRepository.save(fruit);
     }
 }
